@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
@@ -23,6 +23,17 @@ export const metadata: Metadata = {
   title: "Chai — Vetted household help in Nairobi",
   description:
     "Trust-first marketplace connecting Nairobi households with verified domestic workers — drivers, house help, cooks, security, nannies.",
+  appleWebApp: {
+    capable: true,
+    title: "Chai",
+    statusBarStyle: "default",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#b04b2c", // clay-500 — colors the mobile browser chrome
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default async function RootLayout({
