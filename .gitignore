@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Claude Code local settings (may contain command history with secrets)
+.claude/
+
+# Internal docs not meant for the public repo
+Chai-PRD.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -1,0 +1,34 @@
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
+
+/**
+ * Server-side Supabase client for Server Components, Server Actions, and
+ * Route Handlers. Reads/writes the user's session cookies through Next 16's
+ * async cookies() API.
+ *
+ * Call this once per request; do not memoize across requests.
+ */
+export async function createSupabaseServerClient() {
+  const cookieStore = await cookies();
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options),
+            );
+          } catch {
+            // Called from a pure Server Component render — ignore.
+            // The proxy refreshes the session on the next request.
+          }
+        },
+      },
+    },
+  );
+}

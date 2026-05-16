@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
+/*
+  Chai brand palette — warm, trustworthy, human.
+  Anchor: terracotta/clay + deep forest green + cream.
+*/
+@theme {
+  /* Cream / paper */
+  --color-cream-50: #fdfaf3;
+  --color-cream-100: #f8f1e3;
+  --color-cream-200: #ecdfc3;
+
+  /* Warm clay / terracotta */
+  --color-clay-50: #fbf1ec;
+  --color-clay-100: #f3d6c5;
+  --color-clay-200: #e6a98c;
+  --color-clay-300: #d98061;
+  --color-clay-400: #c75c3a;
+  --color-clay-500: #b04b2c;
+  --color-clay-600: #8f3a21;
+  --color-clay-700: #6e2d1a;
+
+  /* Deep forest green */
+  --color-forest-50: #e9f0eb;
+  --color-forest-100: #c6d6c9;
+  --color-forest-200: #8fb097;
+  --color-forest-300: #5a8867;
+  --color-forest-400: #2f6a44;
+  --color-forest-500: #1f5635;
+  --color-forest-600: #17422a;
+  --color-forest-700: #102e1d;
+
+  /* Ink (text) */
+  --color-ink-900: #1c1410;
+  --color-ink-700: #3a2c24;
+  --color-ink-500: #6c5b50;
+  --color-ink-300: #a89889;
+
+  /* Fonts (wired to next/font CSS variables set in layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-cream-50);
+  --foreground: var(--color-ink-900);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Subtle paper-grain background helper */
+.bg-paper {
+  background-color: var(--color-cream-50);
+  background-image:
+    radial-gradient(rgba(176, 75, 44, 0.04) 1px, transparent 1px);
+  background-size: 14px 14px;
 }
